@@ -1,11 +1,14 @@
-on: push
+on:
+  pull_request:
+    types: [opened]
+    branches: [ main ]
 
 jobs:
-  build:
+  bump:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        go-version: ['1.16','1.17', '1.19']
+        go-version: ['1.19']
     steps:
       - uses: actions/checkout@v3
 
@@ -15,8 +18,15 @@ jobs:
           go-version: ${{ matrix.go-version }}
 
       - name: First step
-        run: echo "Hello from a job"
+        run: echo "Hello from a job on a ${{ github.event.number }}"
       - name: Display go version
         run: go version
       - name: Run go program
-        run: go run ./main.go
+        run: go run main.go
+      - name: Bump the image
+        run: |
+          ./bump.sh ${{ github.event.number }}
+          git config --global user.name "CI"
+          git config --global user.email "ci@void"
+          git commit -a -m "bump the image tag"
+          git push
