@@ -7,4 +7,4 @@ jobs:
       - name: First step
         run: echo "Hello from a job"
       - name: Run go program
-        run: go run main.go
+        run: go run ./main.go
