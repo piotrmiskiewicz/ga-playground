@@ -6,28 +6,22 @@ on:
 jobs:
   bump:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        go-version: ['1.19']
     steps:
       - uses: actions/checkout@v3
-      - name: Set up Go
-        uses: actions/setup-go@v3
-        with:
-          go-version: ${{ matrix.go-version }}
 
       - name: First step
         run: echo "Hello from a job on a ${{ github.event.number }}"
-      - name: Display go version
-        run: go version
-      - name: Run go program
-        run: go run main.go
+
       - name: Bump the image
         run: |
+          gh pr checkout ${{ github.event.pull_request.number }}
           ./bump.sh ${{ github.event.number }}
           git config --global user.name "CI"
           git config --global user.email "ci@void"
           git status
           git add values.yaml
           git commit -m "bump the image tag"
-          git push
+      - name: Push changes
+        env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: git push
