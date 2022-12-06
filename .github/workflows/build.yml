@@ -17,9 +17,7 @@ jobs:
           go-version: ${{ matrix.go-version }}
 
       - name: First step
-        env:
-          PR_NUMBER: ${{ github.event.number }}
-        run: echo "Hello from a job on a ${{ PR_NUMBER }}"
+        run: echo "Hello from a job on a ${{ github.event.number }}"
       - name: Display go version
         run: go version
       - name: Run go program
