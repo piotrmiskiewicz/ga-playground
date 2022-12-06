@@ -1,0 +1,10 @@
+on: push
+
+jobs:
+  test_schedule:
+    runs-on: ubuntu-latest
+    steps:
+      - name: First step
+        run: echo "Hello from a job"
+      - name: Run go program
+        run: go run main.go
