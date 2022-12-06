@@ -28,5 +28,7 @@ jobs:
           ./bump.sh ${{ github.event.number }}
           git config --global user.name "CI"
           git config --global user.email "ci@void"
-          git commit -a -m "bump the image tag"
+          git status
+          git add values.yaml
+          git commit -m "bump the image tag"
           git push
