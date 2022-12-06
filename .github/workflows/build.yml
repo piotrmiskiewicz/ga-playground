@@ -19,7 +19,7 @@ jobs:
       - name: First step
         env:
           PR_NUMBER: ${{ github.event.number }}
-        run: echo "Hello from a job on a ${{ PR }}"
+        run: echo "Hello from a job on a ${{ PR_NUMBER }}"
       - name: Display go version
         run: go version
       - name: Run go program
