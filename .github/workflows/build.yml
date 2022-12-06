@@ -16,7 +16,6 @@ jobs:
         with:
           go-version: ${{ matrix.go-version }}
 
-
       - name: First step
         run: echo "Hello from a job on a ${{ github.event.number }}"
       - name: Display go version
