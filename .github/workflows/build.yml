@@ -1,9 +1,10 @@
 on:
   pull_request:
+    types: [opened]
     branches: [ main ]
 
 jobs:
-  build:
+  bump:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -22,3 +23,10 @@ jobs:
         run: go version
       - name: Run go program
         run: go run main.go
+      - name: Bump the image
+        run: |
+          ./bump.sh ${{ github.event.number }}
+          git config --global user.name "CI"
+          git config --global user.email "ci@void"
+          git commit -a -m "bump the image tag"
+          git push
