@@ -23,6 +23,11 @@ jobs:
         run: go version
       - name: Run go program
         run: go run main.go
+      - name: Checkout PR
+        env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh pr checkout ${{ github.event.pull_request.number }}
+
       - name: Bump the image
         run: |
           ./bump.sh ${{ github.event.number }}
@@ -30,3 +35,7 @@ jobs:
           git config --global user.email "ci@void"
           git commit -a -m "bump the image tag"
           git push
+      - name: Push changes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: git push
