@@ -1,0 +1,21 @@
+on:
+  push:
+    types: [opened]
+    branches: [ main ]
+on:
+  push:
+    branches:
+      - 'main'
+
+
+jobs:
+  bump_on_main:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: First step
+        run: echo "Hello from a job on a ${{ github.event.number }}"
+
+      - name: Bump the image
+        run: |
+          echo `git rev-parse HEAD`
