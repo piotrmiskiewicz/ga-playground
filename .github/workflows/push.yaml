@@ -2,8 +2,6 @@ on:
   push:
     branches:
       - 'main'
-
-
 jobs:
   bump_on_main:
     runs-on: ubuntu-latest
@@ -11,9 +9,9 @@ jobs:
       - uses: actions/checkout@v3
       - name: Get commit hash and bump the tag
         run: |
-          commit_sha=`git rev-parse HEAD`
-          echo ${{commit_sha}}
-          ./bump.sh ${{commit_sha}}
+          COMMIT_SHA=`git rev-parse HEAD`
+          echo ${{COMMIT_SHA}}
+          ./bump.sh ${{COMMIT_SHA}}
       - name: Push changes
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
