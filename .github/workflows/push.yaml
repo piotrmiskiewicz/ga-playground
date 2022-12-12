@@ -2,8 +2,6 @@ on:
   push:
     branches:
       - 'main'
-
-
 jobs:
   bump_on_main:
     runs-on: ubuntu-latest
