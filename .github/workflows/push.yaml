@@ -13,4 +13,7 @@ jobs:
       - name: Push changes
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: git push
+        run: |
+          git commit -a -m "bump the image tag"
+          echo "Pushing"
+          git push
