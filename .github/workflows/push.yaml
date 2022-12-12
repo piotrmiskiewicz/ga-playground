@@ -5,6 +5,8 @@ on:
 
 jobs:
   bump_on_main:
+    permissions:
+
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -13,7 +15,7 @@ jobs:
           ./bump_main.sh
       - name: Push changes
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.automainbranch }}
         run: |
           git config --global user.name "CI"
           git config --global user.email "ci@void"
