@@ -1,9 +1,5 @@
 on:
   push:
-    types: [opened]
-    branches: [ main ]
-on:
-  push:
     branches:
       - 'main'
 
