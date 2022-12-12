@@ -9,9 +9,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: First step
-        run: echo "Hello from a job on a ${{ github.event.number }}"
-
-      - name: Bump the image
+      - name: Get commit hash
         run: |
-          echo `git rev-parse HEAD`
+          commit_sha=`git rev-parse HEAD`
+          echo ${{commit_sha}}
+      - name: Bump the tag
+        run: |
+          ./bump.sh ${{commit_sha}}
+      - name: Push changes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: git push
