@@ -9,12 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Get commit hash
+      - name: Get commit hash and bump the tag
         run: |
           commit_sha=`git rev-parse HEAD`
           echo ${{commit_sha}}
-      - name: Bump the tag
-        run: |
           ./bump.sh ${{commit_sha}}
       - name: Push changes
         env:
