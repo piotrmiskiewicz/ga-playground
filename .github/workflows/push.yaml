@@ -14,7 +14,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          create_pr.sh
+          ./create_pr.sh
 #
 #  bump_on_main:
 #    runs-on: ubuntu-latest
