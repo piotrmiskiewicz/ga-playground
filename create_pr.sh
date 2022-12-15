@@ -1,3 +1,4 @@
+
 COMMIT_HASH=`git rev-parse HEAD`
 BR_NAME="autobump-$COMMIT_HASH"
 git config --global user.name "CI"
