@@ -11,11 +11,16 @@ jobs:
       - name: Get commit hash and bump the tag
         run: |
           ./bump_main.sh
-      - name: Push changes
+      - name: Create a PR
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           ./create_pr.sh
+      - name: Approve the PR
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh pr review -a
 #
 #  bump_on_main:
 #    runs-on: ubuntu-latest
