@@ -33,10 +33,12 @@ jobs:
         uses: azure/setup-helm@v3
         with:
           version: v3.10.0
+      - name: Bump chart version
+        run: |
+          echo "bumping chart version to: ${{ github.ref_name }}"
+          ./bump-chart.sh ${{ github.ref_name }}
       - name: Package chart
         run: |
-          echo $PWD
-          ls
           helm package ./chart/new-chart
       - name: Upload Release Asset
         id: upload-release-asset
