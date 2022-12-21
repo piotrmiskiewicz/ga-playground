@@ -35,6 +35,8 @@ jobs:
           version: v3.10.0
       - name: Package chart
         run: |
+          echo $PWD
+          ls
           helm package ./chart/new-chart
       - name: Upload Release Asset
         id: upload-release-asset
