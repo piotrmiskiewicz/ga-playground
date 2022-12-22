@@ -30,9 +30,11 @@ jobs:
           draft: false
           prerelease: false
       - name: Install Helm
-        uses: azure/setup-helm@v3
-        with:
-          version: v3.10.0
+        run: |
+          curl -fsSL -o helm.tar.gz https://get.helm.sh/helm-v3.10.3-linux-amd64.tar.gz
+          tar -xzf helm.tar.gz
+          mv linux-amd64/helm .
+          chmod a+x helm
       - name: Bump chart version
         run: |
           echo "Bumping chart version to: ${{ github.ref_name }}"
