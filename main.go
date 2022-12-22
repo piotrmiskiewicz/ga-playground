@@ -6,6 +6,6 @@ import (
 )
 
 func main() {
-	fmt.Println("It is Friday!!!!!")
+	fmt.Println("It !!!!!")
 	fmt.Println(time.Now())
 }
