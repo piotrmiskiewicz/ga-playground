@@ -16,7 +16,7 @@ jobs:
         run: gh pr checkout ${{ github.event.pull_request.number }}
       - name: Bump the image
         run: |
-          ./bump.sh ${{ github.event.number }}
+          ./bump.sh PR-${{ github.event.number }}
           git config --global user.name "CI"
           git config --global user.email "ci@void"
           git commit -a -m "Bump the image tag"
