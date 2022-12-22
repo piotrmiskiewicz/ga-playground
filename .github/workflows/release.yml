@@ -14,8 +14,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Bump image to the last commit hash
-        run: |
-          "./bump.sh `git rev-parse HEAD`"
+        run: "./bump.sh `git rev-parse HEAD`"
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
