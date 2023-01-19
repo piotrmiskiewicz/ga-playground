@@ -1,6 +1,6 @@
 # This is a basic workflow that is manually triggered
 
-name: Manual release trigger
+name: "Manual release trigger"
 
 # Controls when the action will run. Workflow runs when manually triggered using the UI
 # or API.
@@ -30,7 +30,7 @@ jobs:
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-       with:
+        with:
           tag_name: ${{ github.ref }}
           release_name: Release ${{ github.ref }}
           body: |
